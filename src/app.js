@@ -26,7 +26,13 @@ app.use(express.urlencoded({ extended: true })); // Habilita poder procesar y pa
 
 app.use(express.static(__dirname + "/public")); // Quiero que mi servicio de archivos estáticos se mantenga en public
 
-app.use(cors(corsOptions([config.site.urlfrontend])))
+const whitelist = [] // Habilito los frontend que no vengan como string vacío
+if (config.site.urlfrontend1 !== "") whitelist.push(config.site.urlfrontend1)
+if (config.site.urlfrontend2 !== "") whitelist.push(config.site.urlfrontend2)
+if (config.site.urlfrontend3 !== "") whitelist.push(config.site.urlfrontend3)
+
+app.use(cors(corsOptions(whitelist)))
+
 app.use(addLogger)
 app.use(validateToken)
 

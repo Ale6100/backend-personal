@@ -4,23 +4,68 @@ Bienvenido! En este nuevo repositorio encontrarás mi propio backend personaliza
 
 La idea principal es crear un backend con una única página frontend. Este frontend no contendrá estilos ni lógica avanzada, ya que el objetivo del sitio es centrarse en los endpoints del backend.
 
-Dado que el sitio está destinado _para uso personal_, no proporcionaré la url del mismo, pero si la consigues tampoco podrás utilizarlo ya que se requieren crenciales especiales para su funcionamiento.
+Dado que el sitio está destinado _para uso personal_, no proporcionaré la url del mismo, pero si la consigues tampoco podrás utilizarlo ya que se requieren credenciales especiales para su funcionamiento.
 
 ## Endpoints 🕵️
 
-Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos debes enviar un token de acceso especial en el body con la propiedad `tokenGralB`, o en los query parameters con nombre `tokenGralQ` (donde te parezca más cómodo). El valor de dicho token debe coincidir con el valor definido en la variable de entorno `TOKEN_GRAL`.
+Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos se necesita enviar un token de acceso especial en el body con la propiedad `tokenGralB`, o en los query parameters con nombre `tokenGralQ` (donde te parezca más cómodo). El valor de dicho token debe coincidir con el valor definido en la variable de entorno `TOKEN_GRAL`.
 
-1. En la ruta `/api/mail` con el método `POST`, puedes enviar un correo electrónico utilizando las propiedades de un objeto enviado en el cuerpo de la solicitud (body). Los propiedades son los siguientes:
+Si no envías el token de acceso, se devuelve una respuesta con el estado 403 y el siguiente cuerpo:
 
-    * `from`: El from debe ser quien envía el mail, aunque esto es simbólico porque quien envía el mail realmente es el colocado en la variable de entorno NODEMAILER_USER. Por esta razón recomiendo colocar el email de envío dentro del propio html o en el subject de la petición
+```js
+{
+    status: "error",
+    error: `Credenciales inadecuadas. Debes enviar un token de acceso. Visita https://github.com/Ale6100/backend-personal.git#endpoints-%EF%B8%8F`
+}
+```
 
-    * `to`: Mail de destino
+Existe la posibilidad de que el servidor donde se encuentra alojado este backend devuelva un error 503 en caso de que se intente acceder mientras lo tengo en proceso de mantenimiento.
 
-    * `subject`: Asunto
+### 1. **Envío de mails** 
 
-    * `html`: HTML del cuerpo del mail
+En la ruta `/api/mail` con el método `POST`, puedes enviar un correo electrónico. 
 
-    Recuerda convertir el objeto a formato JSON antes de enviarlo en el body.
+#### 1.1. Solicitud
+Asegúrese de incluir los siguientes datos en el cuerpo de la solicitud (body):
+
+* `from`: La dirección de correo electrónico desde la cual se enviará el mail, aunque esto es simbólico porque quien lo envía realmente es el colocado en la variable de entorno NODEMAILER_USER. Por esta razón recomiendo colocar el email de envío dentro del propio html o en el subject de la petición
+
+* `to`: La dirección de correo electrónico de destino, a la cual se enviará el correo
+
+* `subject`: Asunto
+
+* `html`: El contenido del correo electrónico en formato HTML
+
+Recuerda convertir el objeto a formato JSON antes de enviarlo en el body.
+
+#### 1.2. Respuesta
+Si el correo electrónico se envía correctamente, se devuelve una respuesta con el estado 200 y el siguiente cuerpo:
+
+```js
+{
+    status: "success",
+    message: "Enviado"
+}
+```
+
+Si faltan valores en la solicitud o alguno de los campos requeridos está vacío, se devuelve una respuesta con el estado 400 y el siguiente cuerpo:
+
+```js
+{
+  status: "error",
+  error: "Valores incompletos"
+}
+
+```
+
+Si se produce un error durante el envío del correo electrónico, se devuelve una respuesta con el estado 500 y el siguiente cuerpo:
+
+```js
+{
+  status: "error",
+  error: "X" // El valor X varía según el mensaje de error específico
+}
+```
 
 Por ahora ese es el único endpoint accesible. En el futuro crearé más de acuerdo a mis necesidades.
 
@@ -48,10 +93,11 @@ Es necesario crear variables de entorno mediante la elaboración de un archivo .
 NODEMAILER_USER = X # Gmail configurado en Nodemailer que se usa para enviar los mails
 NODEMAILER_PASS = X # Contraseña que te proporciona nodemailer
 
-URL_FRONTEND = X # URL de tu frontend sin barra lateral final
+URL_FRONTEND1 = X
+URL_FRONTEND2 = X # URLs de los frontends que desees dar permisos de acceso, sin barra lateral final. Debes dejar como string vacío las variables que no desees usar
+URL_FRONTEND3 = X
 
 TOKEN_GRAL = X # Token arbitrario personal, necesario para acceder a los endpoints
-
 ```
 
 ## Despliegue 📦

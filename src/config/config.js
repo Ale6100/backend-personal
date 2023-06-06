@@ -11,7 +11,9 @@ export default { // Exporto un objeto que incluye de manera ordenada las variabl
     },
     
     site: {
-        urlfrontend: process.env.URL_FRONTEND // Sitio donde está ubicado nuestro frontend
+        urlfrontend1: process.env.URL_FRONTEND1,
+        urlfrontend2: process.env.URL_FRONTEND2, // URLs de los frontends que desees dar permisos de acceso, sin barra lateral final. Debes dejar como string vacío las variables que no desees usar
+        urlfrontend3: process.env.URL_FRONTEND3,
     },
 
     token: {
