@@ -6,5 +6,15 @@
 }
 
 h1 {
+    margin: 5px 0px;
     text-align: center;
+}
+
+p {
+    padding: 5px 10px;
+}
+
+a {
+    color: rgb(0, 0, 255);
+    text-decoration: none;
 }

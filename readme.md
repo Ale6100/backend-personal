@@ -8,20 +8,19 @@ Dado que el sitio está destinado _para uso personal_, no proporcionaré la url 
 
 ## Endpoints 🕵️
 
-Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos debes enviar un token de acceso especial en el body con la propiedad `tokenGralB`, o en los query parameters con nombre `tokenGralQ`. Dicho token debe coincidir con el valor definido en la variable de entorno `TOKEN_GRAL`.
+Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos debes enviar un token de acceso especial en el body con la propiedad `tokenGralB`, o en los query parameters con nombre `tokenGralQ` (donde te parezca más cómodo). El valor de dicho token debe coincidir con el valor definido en la variable de entorno `TOKEN_GRAL`.
 
-* En la ruta `/api/mail` con el método `POST`, puedes enviar un correo electrónico utilizando los datos de un objeto enviado en el cuerpo de la solicitud (body). Los campos del objeto son los siguientes:
+1. En la ruta `/api/mail` con el método `POST`, puedes enviar un correo electrónico utilizando las propiedades de un objeto enviado en el cuerpo de la solicitud (body). Los propiedades son los siguientes:
 
-```js
-const objeto = {
-    from, // El from debe ser quien envía el mail, aunque realmente esto es simbólico porque quien envía el mail realmente es el colocado en la variable de entorno NODEMAILER_USER. Por esta razón recomiendo colocar el email de envío dentro del propio html o en el subject de la petición
-    to, // Mail de destino
-    subject, // Asunto
-    html, // HTML del cuerpo del mail
-}
-```
+    * `from`: El from debe ser quien envía el mail, aunque esto es simbólico porque quien envía el mail realmente es el colocado en la variable de entorno NODEMAILER_USER. Por esta razón recomiendo colocar el email de envío dentro del propio html o en el subject de la petición
 
-Recuerda convertir el objeto a formato JSON antes de enviarlo en el body.
+    * `to`: Mail de destino
+
+    * `subject`: Asunto
+
+    * `html`: HTML del cuerpo del mail
+
+    Recuerda convertir el objeto a formato JSON antes de enviarlo en el body.
 
 Por ahora ese es el único endpoint accesible. En el futuro crearé más de acuerdo a mis necesidades.
 
