@@ -8,18 +8,16 @@ Dado que el sitio está destinado _para uso personal_, no proporcionaré la url 
 
 ## Endpoints 🕵️
 
-Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos se necesita enviar un token de acceso especial en el body con la propiedad `tokenGralB`, o en los query parameters con nombre `tokenGralQ` (donde te parezca más cómodo). El valor de dicho token debe coincidir con el valor definido en la variable de entorno `TOKEN_GRAL`.
+Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos se necesita enviar un token de acceso especial en los encabezados utilizando el esquema de autenticación Bearer, el valor del token debe ser el definido en la variable de entorno `TOKEN_GRAL`.
 
 Si no envías el token de acceso, se devuelve una respuesta con el estado 403 y el siguiente cuerpo:
 
 ```js
 {
     status: "error",
-    error: `Credenciales inadecuadas. Debes enviar un token de acceso. Visita https://github.com/Ale6100/backend-personal.git#endpoints-%EF%B8%8F`
+    error: `Forbidden | Token de acceso inválido. Visita https://github.com/Ale6100/backend-personal.git#endpoints-%EF%B8%8F`
 }
 ```
-
-Existe la posibilidad de que el servidor donde se encuentra alojado este backend devuelva un error 503 en caso de que se intente acceder mientras lo tengo en proceso de mantenimiento.
 
 ### 1. **Envío de mails** 
 
