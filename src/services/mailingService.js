@@ -19,7 +19,7 @@ const sendMail = async (objConf) => { // Envía un mail según los datos que ven
             to: to, // Mail de destino | También se puede configurar para que envíe a varios mails, si el "to" fuera un arreglo de mails
             subject: subject, // Asunto
             html: html, // HTML del cuerpo del mail
-            // attachments // Por ahora no necesito activar esto
+            attachments: attachments // Archivos adjuntos
         })
         return "success"
     } catch (error) {

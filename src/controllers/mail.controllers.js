@@ -2,7 +2,7 @@ import __dirname from "../utils.js";
 import sendMail from "../services/mailingService.js";
 
 const send = async (req, res) => { // En /api/mail con el método POST, se envía un mail usando los datos pasados en el body
-    const { from, to, subject, html } = req.body
+    const { from, to, subject, html, attachments } = req.body
 
     if (!from || !to || !subject || !html) {
         req.logger.error(`${req.infoPeticion} | Incomplete values`)
@@ -14,6 +14,7 @@ const send = async (req, res) => { // En /api/mail con el método POST, se enví
         to,
         subject,
         html,
+        attachments: attachments
     })
 
     if (response === "success") {

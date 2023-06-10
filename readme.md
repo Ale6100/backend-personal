@@ -8,7 +8,7 @@ Dado que el sitio está destinado _para uso personal_, no proporcionaré la url 
 
 ## Endpoints 🕵️
 
-Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos se necesita enviar un token de acceso especial en los encabezados utilizando el esquema de autenticación Bearer, el valor del token debe ser el definido en la variable de entorno `TOKEN_GRAL`.
+Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos se necesita enviar un token de acceso especial en los encabezados utilizando el esquema de autenticación Bearer simple, esto es, enviando Authorization: `Bearer X` en la petición, donde `X` es el valor del token definido en la variable de entorno `TOKEN_GRAL`.
 
 Si no envías el token de acceso, se devuelve una respuesta con el estado 403 y el siguiente cuerpo:
 
@@ -34,7 +34,9 @@ Asegúrese de incluir los siguientes datos en el cuerpo de la solicitud (body):
 
 * `html`: El contenido del correo electrónico en formato HTML
 
-Recuerda convertir el objeto a formato JSON antes de enviarlo en el body.
+* `attachments` (opcional): Un arreglo que contenga el nombre de los archivos adjuntos junto con sus rutas de origen, por ejemplo `[{filename: "imagen.jpg", path: "https://dummyimage.com/600x400/000/fff"}]`. No envíes ningún archivo pesado, estoy analizando cuál es el límite.
+
+Recuerda convertir a formato JSON al objeto con estos datos, antes de enviarlo por el body.
 
 #### 1.2. Respuesta
 Si el correo electrónico se envía correctamente, se devuelve una respuesta con el estado 200 y el siguiente cuerpo:
