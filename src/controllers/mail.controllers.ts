@@ -1,7 +1,8 @@
 import __dirname from "../utils.js";
 import sendMail from "../services/mailingService.js";
+import { Request, Response } from "express";
 
-const send = async (req, res) => { // En /api/mail con el método POST, se envía un mail usando los datos pasados en el body
+const send = async (req: Request, res: Response) => { // En /api/mail con el método POST, se envía un mail usando los datos pasados en el body
     const { from, to, subject, html, attachments } = req.body
 
     if (!from || !to || !subject || !html) {
@@ -18,10 +19,11 @@ const send = async (req, res) => { // En /api/mail con el método POST, se enví
     })
 
     if (response === "success") {
-        res.status(200).send({ status: "success", message: "Enviado" })
+        return res.status(200).send({ status: "success", message: "Enviado" })
+    
     } else {
         req.logger.fatal(`${req.infoPeticion} | ${response}`)
-        res.status(500).send({ status: "error", error: response })
+        return res.status(500).send({ status: "error", error: response })
     }
 }
 

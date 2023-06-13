@@ -1,4 +1,11 @@
 import winston from "winston";
+import __dirname from "../utils.js"
+
+declare module 'winston' {
+    interface Logger {
+      fatal: LeveledLogMethod; // Agrego el tipo de dato correspondient al nivel creado
+    }
+}
 
 const customLevelsConfig = { // Creo mis propios niveles de prioridad para usar en winston (ver niveles por defecto en https://github.com/winstonjs/winston#logging-levels)
     fatal: 0,
@@ -16,17 +23,17 @@ export default winston.createLogger({
         
         new winston.transports.File({ // Otro medio para guardar logs será en archivos
             level: "warn",
-            filename: "./info/warn.log"
+            filename: `${__dirname}/info/warn.log`
         }),
 
         new winston.transports.File({
             level: "error",
-            filename: "./info/error.log"
+            filename: `${__dirname}/info/error.log`
         }),
 
         new winston.transports.File({
             level: "fatal",
-            filename: "./info/fatal.log"
+            filename: `${__dirname}/info/fatal.log`
         })
     ]
 })

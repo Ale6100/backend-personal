@@ -2,7 +2,7 @@
 
 Bienvenido! En este nuevo repositorio encontrarás mi propio backend personalizado de acuerdo a mis necesidades, pero configurado de manera que pueda adaptarse fácilmente a otros proyectos.
 
-La idea principal es crear un backend con una única página frontend. Este frontend no contendrá estilos ni lógica avanzada, ya que el objetivo del sitio es centrarse en los endpoints del backend.
+La idea principal es crear un backend con una única página frontend. Este frontend no contendrá estilos ni lógica avanzada, ya que el objetivo del sitio es centrarse en el uso de endpoints.
 
 Dado que el sitio está destinado _para uso personal_, no proporcionaré la url del mismo, pero si la consigues tampoco podrás utilizarlo ya que se requieren credenciales especiales para su funcionamiento.
 
@@ -77,7 +77,7 @@ Mira **Despliegue** para saber cómo desplegar el proyecto en tu computadora.
 
 ### Pre-requisitos 📋
 
-Necesitas tener previamente descargado e instalado [NodeJs](https://nodejs.org/).
+Necesitas tener previamente descargado e instalado [NodeJs](https://nodejs.org/) y [TypeScript](https://www.typescriptlang.org/).
 
 ### Instalación 🔧
 
@@ -94,25 +94,37 @@ NODEMAILER_USER = X # Gmail configurado en Nodemailer que se usa para enviar los
 NODEMAILER_PASS = X # Contraseña que te proporciona nodemailer
 
 URL_FRONTEND1 = X
-URL_FRONTEND2 = X # URLs de los frontends que desees dar permisos de acceso, sin barra lateral final. Debes dejar como string vacío las variables que no desees usar
+URL_FRONTEND2 = X # URLs de los frontends que desees dar permisos de acceso, sin barra lateral final
 URL_FRONTEND3 = X
 
 TOKEN_GRAL = X # Token arbitrario personal, necesario para acceder a los endpoints
 ```
 
+## Desarrollo 👷
+
+La carpeta de trabajo es `src` y su archivo principal se ubica en [src/app.ts](src/app.ts). Realiza las modificaciones que desees y, cuando estés listo, ejecuta el siguiente comando:
+
+```
+npm run tsc-copy
+```
+
+Este comando primero compilará todos los archivos TypeScript y los guardará en una carpeta `dist`, luego también copiará todos los archivos restantes de `src` a `dist`, manteniendo así la estructura de organización.
+
+Recomiendo eliminar o vaciar la carpeta `dist` antes de ejecutar dicho comando.
+
 ## Despliegue 📦
 
-Corre el proyecto con el comando
+Para ejecutar el proyecto compilado, utiliza el comando:
 
 ```
 npm start
 ```
 
-Una vez que veas el mensaje "Servidor escuchando en el puerto 8080" (puerto configurado por defecto), podrás comenzar a programar sin problemas.
+Una vez que veas el mensaje "Servidor escuchando en el puerto 8080" (puerto configurado por defecto), podrás comenzar a utilizarlo sin problemas.
 
 ## Construido con 🛠️
 
-* JavaScript
+* [TypeScript](https://www.typescriptlang.org/)
 * [NodeJs](https://nodejs.org/)
 * [express](https://www.npmjs.com/package/express)
 * [cors](https://www.npmjs.com/package/cors)
