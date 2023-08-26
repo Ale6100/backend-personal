@@ -12,7 +12,7 @@ import http from "http";
 
 const app = express();
 
-const PORT = process.env.PORT || 8080; // Elige el puerto 8080 en caso de que no venga definido uno por defecto como variable de entorno
+const PORT = process.env["PORT"] || 8080; // Elige el puerto 8080 en caso de que no venga definido uno por defecto como variable de entorno
 
 const server: http.Server = app.listen(PORT, () => { // Escuchamos en el puerto cada vez que se reconozca un nuevo proceso worker. Todos los procesos se comparten el mismo puerto
     const address = server.address();
@@ -23,13 +23,8 @@ const server: http.Server = app.listen(PORT, () => { // Escuchamos en el puerto 
 }); 
 server.on("error", error => logger.fatal(`${error}`))
 
-app.set("views", `${__dirname}/views`); // Ubicación de las vistas
-app.set("view engine", "ejs"); // Configuramos EJS como el motor de visualización de nuestra app
-
 app.use(express.json()); // Especifica que podemos recibir json
 app.use(express.urlencoded({ extended: true })); // Habilita poder procesar y parsear datos más complejos en la url
-
-app.use(express.static(__dirname + "/public")); // Quiero que mi servicio de archivos estáticos se mantenga en public
 
 const whitelist = [] // Habilito los frontend que no vengan como string vacío
 if (config.site.urlfrontend1) whitelist.push(config.site.urlfrontend1)

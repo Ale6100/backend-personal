@@ -34,7 +34,7 @@ Asegúrese de incluir los siguientes datos en el cuerpo de la solicitud (body):
 
 * `html`: El contenido del correo electrónico en formato HTML
 
-* `attachments` (opcional): Un arreglo que contenga el nombre de los archivos adjuntos junto con sus rutas de origen, por ejemplo `[{filename: "imagen.jpg", path: "https://dummyimage.com/600x400/000/fff"}]`. No envíes ningún archivo pesado, estoy analizando cuál es el límite.
+* `attachments` (opcional): Un arreglo que contenga el nombre de los archivos adjuntos junto con sus rutas de origen, por ejemplo `[{filename: "imagen.jpg", path: "https://dummyimage.com/600x400/000/fff"}]`. No envíes ningún archivo pesado, pronto especificaré el límite.
 
 Recuerda convertir a formato JSON al objeto con estos datos, antes de enviarlo por el body.
 
@@ -77,7 +77,7 @@ Mira **Despliegue** para saber cómo desplegar el proyecto en tu computadora.
 
 ### Pre-requisitos 📋
 
-Necesitas tener previamente descargado e instalado [NodeJs](https://nodejs.org/) y [TypeScript](https://www.typescriptlang.org/).
+Necesitas tener previamente descargado e instalado [NodeJs](https://nodejs.org/).
 
 ### Instalación 🔧
 
@@ -105,10 +105,10 @@ TOKEN_GRAL = X # Token arbitrario personal, necesario para acceder a los endpoin
 La carpeta de trabajo es `src` y su archivo principal se ubica en [src/app.ts](src/app.ts). Realiza las modificaciones que desees y, cuando estés listo, ejecuta el siguiente comando:
 
 ```
-npm run tsc-copy
+npm run build
 ```
 
-Este comando primero compilará todos los archivos TypeScript y los guardará en una carpeta `dist`, luego también copiará todos los archivos restantes de `src` a `dist`, manteniendo así la estructura de organización.
+Este comando compilará todos los archivos TypeScript y los guardará en una carpeta `dist`.
 
 Recomiendo eliminar o vaciar la carpeta `dist` antes de ejecutar dicho comando.
 
@@ -129,7 +129,6 @@ Una vez que veas el mensaje "Servidor escuchando en el puerto 8080" (puerto conf
 * [express](https://www.npmjs.com/package/express)
 * [cors](https://www.npmjs.com/package/cors)
 * [dotenv](https://www.npmjs.com/package/dotenv)
-* [ejs](https://www.npmjs.com/package/ejs)
 * [nodemailer](https://www.npmjs.com/package/nodemailer)
 * [winston](https://www.npmjs.com/package/winston)
 
