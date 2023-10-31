@@ -12,7 +12,7 @@ import http from "http";
 
 const app = express();
 
-const PORT = process.env["PORT"] || 8080; // Elige el puerto 8080 en caso de que no venga definido uno por defecto como variable de entorno
+const PORT = process.env["PORT"] ?? 8080; // Elige el puerto 8080 en caso de que no venga definido uno por defecto como variable de entorno
 
 const server: http.Server = app.listen(PORT, () => { // Escuchamos en el puerto cada vez que se reconozca un nuevo proceso worker. Todos los procesos se comparten el mismo puerto
     const address = server.address();

@@ -8,7 +8,7 @@ Dado que el sitio está destinado _para uso personal_, no proporcionaré la url 
 
 ## Endpoints 🕵️
 
-Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos se necesita enviar un token de acceso especial en los encabezados utilizando el esquema de autenticación Bearer simple, esto es, enviando Authorization: `Bearer X` en la petición, donde `X` es el valor del token definido en la variable de entorno `TOKEN_GRAL`.
+Antes de presentar los endpoints disponibles, debes saber que para acceder a ellos se necesita enviar un token de acceso especial en los encabezados utilizando el esquema de autenticación Bearer simple, esto es, enviando Authorization: `Bearer X` en el encabezado de la petición, donde `X` es el valor del token definido en la variable de entorno `TOKEN_GRAL`.
 
 Si no envías el token de acceso, se devuelve una respuesta con el estado 403 y el siguiente cuerpo:
 
@@ -34,7 +34,7 @@ Asegúrese de incluir los siguientes datos en el cuerpo de la solicitud (body):
 
 * `html`: El contenido del correo electrónico en formato HTML
 
-* `attachments` (opcional): Un arreglo que contenga el nombre de los archivos adjuntos junto con sus rutas de origen, por ejemplo `[{filename: "imagen.jpg", path: "https://dummyimage.com/600x400/000/fff"}]`. No envíes ningún archivo pesado, pronto especificaré el límite.
+* `attachments` (opcional): Un arreglo que contenga el nombre de los archivos adjuntos junto con sus rutas de origen, por ejemplo `[{filename: "imagen.jpg", path: "https://dummyimage.com/600x400/000/fff"}]`. Considera que cada servicio de mail tiene su propio límite de peso por archivo. Si te excedes, no se enviarán.
 
 Recuerda convertir a formato JSON al objeto con estos datos, antes de enviarlo por el body.
 
@@ -67,7 +67,7 @@ Si se produce un error durante el envío del correo electrónico, se devuelve un
 }
 ```
 
-Por ahora ese es el único endpoint accesible. En el futuro crearé más de acuerdo a mis necesidades.
+Por ahora ese es el único endpoint ya que no tengo la necesidad de algún otro servicio para uso exclusivo personal. Mis proyectos tienden a ser para todos.
 
 ## Descarga ⬇️
 

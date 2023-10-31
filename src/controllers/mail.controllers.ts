@@ -22,8 +22,8 @@ const send = async (req: Request, res: Response) => { // En /api/mail con el mé
         return res.status(200).send({ status: "success", message: "Enviado" })
     
     } else {
-        req.logger.fatal(`${req.infoPeticion} | ${response}`)
-        return res.status(500).send({ status: "error", error: response })
+        req.logger.fatal(`${req.infoPeticion} | ${response} - Si enviaste archivos adjuntos pesados (comunmente 25MB o más), es posible que el error se deba a eso`)
+        return res.status(500).send({ status: "error", error: `${response} - Si enviaste archivos adjuntos pesados (comunmente 25MB o más), es posible que el error se deba a eso` })
     }
 }
 
